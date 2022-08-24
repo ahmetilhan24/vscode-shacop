@@ -3,11 +3,12 @@ import ISharingPlatform from "../types/sharing-platform";
 
 export const SHARING_PLATFORMS: ISharingPlatform[] = [
   {
-    url: "https://wa.me/?text=",
+    url: (msg) => `https://wa.me/?text=*${msg}*`,
     name: "Whatsapp",
   },
   {
-    url: "https://teams.microsoft.com/l/chat/0/0?users=ailhan%40hepsiemlak.com",
+    url: (msg, user) =>
+      `https://teams.microsoft.com/l/chat/0/0?users=${user}&message=%60%60%60${msg}%60%60%60`,
     name: "Teams",
   },
 ];

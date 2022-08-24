@@ -14,12 +14,26 @@ export function activate(context: vscode.ExtensionContext) {
           vscode.window.showErrorMessage(pushMessages.CODE_IS_TO_LONG);
           return;
         }
-        const selectPlatform = await vscode.window.showQuickPick(
+        const selectedPlatform = await vscode.window.showQuickPick(
           QPPlatforms(),
           { placeHolder: "Select sharing platform" }
         );
-        if (selectPlatform) {
-          platformRedirect(selectPlatform, getSelectionText());
+        if (selectedPlatform) {
+          switch (selectedPlatform.label) {
+            case "Whatsapp":
+              platformRedirect(selectedPlatform, getSelectionText());
+              break;
+            case "Teams":
+              const email = await vscode.window.showInputBox({
+                placeHolder: "Enter email address",
+              });
+              if (email) {
+                platformRedirect(selectedPlatform, getSelectionText(), email);
+              }
+              break;
+            default:
+              break;
+          }
         }
       } else {
         vscode.window.showErrorMessage(pushMessages.NOT_SELECTED);
