@@ -3,6 +3,7 @@ import pushMessages from "./constants/push-messages";
 import { QPPlatforms } from "./constants/sharing-platforms";
 import { platformRedirect } from "./utils/platform-redirect.util";
 import { getSelectionText } from "./utils/selection.util";
+import { emailValidation } from "./utils/validation-util";
 export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand(
     "shacop.helloWorld",
@@ -26,6 +27,12 @@ export function activate(context: vscode.ExtensionContext) {
             case "Teams":
               const email = await vscode.window.showInputBox({
                 placeHolder: "Enter email address",
+                validateInput: (value) => {
+                  if (emailValidation(value)) {
+                    return null;
+                  }
+                  return pushMessages.ENTER_A_VALID_VALUE;
+                },
               });
               if (email) {
                 platformRedirect(selectedPlatform, getSelectionText(), email);
