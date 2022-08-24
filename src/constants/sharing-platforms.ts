@@ -8,7 +8,7 @@ export const SHARING_PLATFORMS: ISharingPlatform[] = [
   },
   {
     url: (msg, user) =>
-      `https://teams.microsoft.com/l/chat/0/0?users=${user}&message=%60%60%60${msg}%60%60%60`,
+      `https://teams.microsoft.com/l/chat/0/0?users=${user}&message=%60%60%60 ${msg} %60%60%60`,
     name: "Teams",
   },
 ];
