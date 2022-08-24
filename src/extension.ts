@@ -3,6 +3,7 @@ import pushMessages from "./constants/push-messages";
 import { QPPlatforms } from "./constants/sharing-platforms";
 import { platformRedirect } from "./utils/platform-redirect.util";
 import { getSelectionText } from "./utils/selection.util";
+import { getStorage, initStorage, setStorage } from "./utils/storage-util";
 import { emailValidation } from "./utils/validation-util";
 export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand(
@@ -10,6 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
     async () => {
       const editor = vscode.window.activeTextEditor;
       if (editor?.selection && !!getSelectionText()) {
+        await initStorage(context);
         // control for URL limit
         if (Number(getSelectionText()?.length) > 2000) {
           vscode.window.showErrorMessage(pushMessages.CODE_IS_TO_LONG);
@@ -35,7 +37,15 @@ export function activate(context: vscode.ExtensionContext) {
                 },
               });
               if (email) {
-                platformRedirect(selectedPlatform, getSelectionText(), email);
+                const oldItems = await getStorage(context, "users");
+                let payload = [{ email: email }];
+                if (oldItems) {
+                  // @ts-ignore
+                  payload = [...oldItems, ...payload];
+                }
+                console.log(payload);
+                await setStorage(context, "users", payload);
+                // platformRedirect(selectedPlatform, getSelectionText(), email);
               }
               break;
             default:
