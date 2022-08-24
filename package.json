@@ -1,5 +1,7 @@
 {
   "name": "shacop",
+  "author": "Ahmet ilhan <ahmetilhan.dev@gmail.com>",
+  "publisher": "Ahmetilhan",
   "displayName": "Shacop",
   "description": "Code partial sharing with teams discord whatsapp ",
   "version": "0.0.1",
