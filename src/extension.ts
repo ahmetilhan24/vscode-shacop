@@ -5,7 +5,7 @@ export function activate(context: vscode.ExtensionContext) {
     const editor = vscode.window.activeTextEditor;
     if (editor) {
       vscode.window.onDidChangeTextEditorSelection(() => {
-        console.log(getSelectionText());
+        vscode.window.showQuickPick([]);
       });
     }
   });

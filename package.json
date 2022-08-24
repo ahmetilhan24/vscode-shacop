@@ -17,9 +17,17 @@
     "commands": [
       {
         "command": "shacop.helloWorld",
-        "title": "Hello World"
+        "title": "Share Selected Code"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceLangId == javascript",
+          "command": "shacop.helloWorld"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run package",
