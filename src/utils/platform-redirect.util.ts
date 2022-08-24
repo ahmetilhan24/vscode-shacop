@@ -9,6 +9,12 @@ export const platformRedirect = (
     (item) => item.name === platform.label
   );
   if (typeof selectedText === "string") {
-    opn(selectedPlatform?.url + selectedText);
+    switch (selectedPlatform?.name) {
+      case "Whatsapp":
+        opn(selectedPlatform?.url + selectedText);
+        break;
+      default:
+        break;
+    }
   }
 };
