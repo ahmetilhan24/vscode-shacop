@@ -1,4 +1,5 @@
 import { SHARING_PLATFORMS } from "../constants/sharing-platforms";
+// @ts-ignore
 import * as opn from "opn";
 import { QuickPickItem } from "vscode";
 export const platformRedirect = (
