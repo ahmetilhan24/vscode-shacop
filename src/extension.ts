@@ -45,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
                 }
                 console.log(payload);
                 await setStorage(context, "users", payload);
-                // platformRedirect(selectedPlatform, getSelectionText(), email);
+                platformRedirect(selectedPlatform, getSelectionText(), email);
               }
               break;
             default:
