@@ -43,10 +43,12 @@ export function activate(context: vscode.ExtensionContext) {
                   // @ts-ignore
                   payload = [...oldItems, ...payload];
                 }
-                console.log(payload);
                 await setStorage(context, "users", payload);
                 platformRedirect(selectedPlatform, getSelectionText(), email);
               }
+              break;
+            case "Telegram":
+              platformRedirect(selectedPlatform, getSelectionText());
               break;
             default:
               break;

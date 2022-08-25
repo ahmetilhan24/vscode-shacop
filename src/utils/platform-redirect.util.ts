@@ -18,6 +18,9 @@ export const platformRedirect = (
       case "Teams":
         opn(selectedPlatform?.url(selectedText, user));
         break;
+      case "Telegram":
+        opn(selectedPlatform?.url(selectedText));
+        break;
       default:
         break;
     }
